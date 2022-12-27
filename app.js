@@ -1,9 +1,12 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const db = require('./connection')
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+   db.query("SELECT * FROM mahasiswa", (error, result) => {
+      res.send(result)
+   })
 })
 
 app.listen(port, () => {
